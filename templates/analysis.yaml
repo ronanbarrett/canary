@@ -5,7 +5,7 @@ metadata:
 spec:
   metrics:
   - name: external-check
-    successCondition: result == "GETx" # this would check the result of a prom query
+    successCondition: result == "GET" # this would check the result of a prom query
     provider:
       web:
         url: "https://httpbin.org/anything" # This would be a promethus query in the real world
