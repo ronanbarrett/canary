@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: external-check
+spec:
+  metrics:
+  - name: external-check
+    successCondition: result == "GET" # this would check the result of a prom query
+    provider:
+      web:
+        url: "https://httpbin.org/anything" # This would be a promethus query in the real world
+        jsonPath: "{$.method}"
