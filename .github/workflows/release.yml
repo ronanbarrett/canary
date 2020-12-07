@@ -1,7 +1,7 @@
 name: Release to staging
 on:
   push:
-    branch: ['master']
+    branch: ['master'] #TODO For deploy to stage allow any branch. For deploy to prod allow only master with tag
 
 jobs:
   prepare_stage_deploy:
@@ -25,4 +25,11 @@ jobs:
           depth: 1
       - run: echo prod with "${GITHUB_SHA}" and "${GITHUB_REF}"
 
+#TODO: Checkout another repo
+#Create a commit in the other repo by swapping the image
+#For stage commit directly to master (how can this work with protected branch)
+#For prod create PR
+
 #See https://stackoverflow.com/questions/62325286/run-github-actions-when-pull-requests-have-a-specific-label
+#Consider https://github.community/t/push-from-action-to-different-remote-repo/17848/2
+
