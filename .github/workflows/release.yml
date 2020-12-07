@@ -4,12 +4,23 @@ on:
     branch: ['master']
 
 jobs:
-  commit_to_repo:
+  prepare_stage_deploy:
     name: test
+    if: ${{ github.event.label.name == 'stage' }}
     runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
         with:
           depth: 1
-      - run: echo test
+      - run: echo stage
+  prepare_prod_deploy:
+    name: test
+    if: ${{ github.event.label.name == 'prod' }}
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          depth: 1
+      - run: echo prod
