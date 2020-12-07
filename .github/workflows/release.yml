@@ -7,20 +7,20 @@ jobs:
   prepare_stage_deploy:
     name: test stage
     runs-on: ubuntu-18.04
+    if: ${{ github.event.label.*.name == 'stage' }}
 
     steps:
       - uses: actions/checkout@v2
-        if: ${{ github.event.label.*.name == 'stage' }}
         with:
           depth: 1
       - run: echo stage
   prepare_prod_deploy:
     name: test prod
     runs-on: ubuntu-18.04
+    if: ${{ github.event.label.*.name == 'prod' }}
 
     steps:
       - uses: actions/checkout@v2
-        if: ${{ github.event.label.*.name == 'prod' }}
         with:
           depth: 1
       - run: echo prod
