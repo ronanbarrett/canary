@@ -1,0 +1,14 @@
+name: Release to staging
+on:
+  push:
+    branch: ['master']
+
+jobs:
+  name: test
+  runs-on: ubuntu-18.04
+
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        depth: 1
+    - run: echo test
