@@ -13,7 +13,7 @@ jobs:
         if: ${{ github.event.label.*.name == 'stage' }}
         with:
           depth: 1
-      - run: echo stage with "${{ GITHUB_SHA }} and "${{ GITHUB_REF }}"
+      - run: echo stage with "${GITHUB_SHA} and "${GITHUB_REF}"
   prepare_prod_deploy:
     name: test prod
     runs-on: ubuntu-18.04
@@ -23,6 +23,6 @@ jobs:
         if: ${{ github.event.label.*.name == 'prod' }}
         with:
           depth: 1
-      - run: echo prod with "${{ GITHUB_SHA }} and "${{ GITHUB_REF }}"
+      - run: echo prod with "${GITHUB_SHA} and "${GITHUB_REF}"
 
 #See https://stackoverflow.com/questions/62325286/run-github-actions-when-pull-requests-have-a-specific-label
