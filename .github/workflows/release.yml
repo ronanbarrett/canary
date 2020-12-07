@@ -5,22 +5,24 @@ on:
 
 jobs:
   prepare_stage_deploy:
-    name: test
+    name: test stage
     runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
-        if: ${{ github.event.label.name == 'stage' }}
+        if: ${{ github.event.label.*.name == 'stage' }}
         with:
           depth: 1
       - run: echo stage
   prepare_prod_deploy:
-    name: test
+    name: test prod
     runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
-        if: ${{ github.event.label.name == 'prod' }}
+        if: ${{ github.event.label.*.name == 'prod' }}
         with:
           depth: 1
       - run: echo prod
+
+#See https://stackoverflow.com/questions/62325286/run-github-actions-when-pull-requests-have-a-specific-label
