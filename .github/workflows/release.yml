@@ -6,21 +6,21 @@ on:
 jobs:
   prepare_stage_deploy:
     name: test
-    if: ${{ github.event.label.name == 'stage' }}
     runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
+        if: ${{ github.event.label.name == 'stage' }}
         with:
           depth: 1
       - run: echo stage
   prepare_prod_deploy:
     name: test
-    if: ${{ github.event.label.name == 'prod' }}
     runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
+        if: ${{ github.event.label.name == 'prod' }}
         with:
           depth: 1
       - run: echo prod
