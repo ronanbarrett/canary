@@ -19,6 +19,7 @@ jobs:
         run: yq w k8s/values/stage.yaml "image" "repo.io/project/service:v0.8.29-sha" > k8s/values/stage.yaml
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
+          branch: master
           commit_message: Set image for deploy
   prepare_prod_deploy:
     name: test prod
