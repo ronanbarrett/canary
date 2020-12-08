@@ -11,15 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        if: ${{ github.event.label.*.name == 'stage' }}
         with:
           depth: 1
       - name: Use yq
         uses: mikefarah/yq@3.4.1
-        if: ${{ github.event.label.*.name == 'stage' }}
       - name: Modify image tag
-        if: ${{ github.event.label.*.name == 'stage' }}
-        run: yq w k8s/values/stage.yaml "image" "repo.io/project/service:v0.8.29-sha"
+        run: yq w k8s/values/stage.yaml "image" "repo.io/project/service:v0.8.29-sha" > k8s/values/stage.yaml
   prepare_prod_deploy:
     name: test prod
     runs-on: ubuntu-18.04
