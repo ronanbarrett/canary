@@ -28,3 +28,12 @@ argocd app patch-resource blue-green --kind Rollout --resource-name blue-green-h
 ```
 
 This promotes `ks-guestbook-demo:0.2` to `green` status and `Rollout` deletes old replica which runs `ks-guestbook-demo:0.1`.
+
+Test zone:
+#TODO: Checkout another repo
+#Create a commit in the other repo by swapping the image
+#For stage commit directly to master (how can this work with protected branch)
+#For prod create PR
+
+#See https://stackoverflow.com/questions/62325286/run-github-actions-when-pull-requests-have-a-specific-label
+#Consider https://github.community/t/push-from-action-to-different-remote-repo/17848/2
