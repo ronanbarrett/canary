@@ -11,11 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install and run yq
+      - name: Install yq
         run: |
           sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64
           sudo chmod +x /usr/local/bin/yq
-          yq w k8s/values/stage.yaml "image" "repo.io/project/service:v0.8.29-sha" > k8s/values/stage.yaml
+      - name: Update image with yq
+        run: yq w k8s/values/stage.yaml "image" "repo.io/project/service:v0.8.29-sha" > k8s/values/stage.yaml
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Set image for deploy
