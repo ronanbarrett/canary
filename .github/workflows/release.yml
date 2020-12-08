@@ -9,14 +9,16 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
         if: ${{ github.event.label.*.name == 'stage' }}
         with:
           depth: 1
-      - run: echo stage with "${GITHUB_SHA}" and "${GITHUB_REF}"
-      - uses: mikefarah/yq@3.4.1
+        run: echo stage with "${GITHUB_SHA}" and "${GITHUB_REF}"
+      - name: Modify image tag
+        uses: mikefarah/yq@3.4.1
         if: ${{ github.event.label.*.name == 'stage' }}
-      - run: yq w k8s/values/stage.yaml "image" "repo.io/project/service:v0.8.29-sha"
+        run: yq w k8s/values/stage.yaml "image" "repo.io/project/service:v0.8.29-sha"
   prepare_prod_deploy:
     name: test prod
     runs-on: ubuntu-18.04
